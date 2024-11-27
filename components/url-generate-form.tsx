@@ -19,7 +19,7 @@ const UrlGenerateForm = () => {
                     <label
                         htmlFor='url'
                         className='font-bold text-primary pl-5 text-lg'>Link</label>
-                    <input type='text' name='link'
+                    <input type='url' name='link'
                         id='url'
                         required
                         className='rounded-full py-3 px-5 text bg-primary text-accent 
