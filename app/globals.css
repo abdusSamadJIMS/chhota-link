@@ -16,5 +16,11 @@
 body {
   background-color: var(--accent);
   font-family: var(--font-work-sans), sans-serif;
-  overflow-y: hidden;
+  overflow: hidden;
+}
+
+html,
+*,
+body {
+  overflow: hidden !important;
 }

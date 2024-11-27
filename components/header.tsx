@@ -19,7 +19,7 @@ const Header = () => {
       </h1>
       <h2>
         Created by
-        <Link href={'www.linkedin.com/in/abdus-samad-633b3425a'}
+        <Link href={'https://www.linkedin.com/in/abdus-samad-633b3425a'}
 
           className='font-black hover:text-neutral transition-colors duration-300 '>
           &nbsp;@Abdus Samad

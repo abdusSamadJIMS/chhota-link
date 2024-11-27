@@ -3,6 +3,7 @@ import React, { useActionState } from 'react'
 import { generateUrl } from '@/lib/actions'
 import Form from 'next/form'
 import Link from 'next/link'
+import CopyButton from './copy-button'
 
 const UrlGenerateForm = () => {
     const [state, formAction, isPending] = useActionState(generateUrl, '')
@@ -78,15 +79,22 @@ const UrlGenerateForm = () => {
                 </button>
                 {
                     state &&
-                    <div className='bg-neutral w-full rounded-md px-3 py-2 text-sm text-center'>
+                    <div className='bg-neutral w-full rounded-md px-3 py-2 text-sm text-center
+                    flex justify-between flex-nowrap items-center
+                    '>
 
-                        <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/${state}`}
+                        <Link
+                            id='generated-url'
+                            href={`${process.env.NEXT_PUBLIC_BASE_URL}/${state}`}
                             rel='nofollow'
                             target='_blank'
                             className='text-blue-500 hover:text-blue-700
                         leading-tight
                         '
                         >{state && `${process.env.NEXT_PUBLIC_BASE_URL}/${state}`}</Link>
+                        <CopyButton
+                            text={`${process.env.NEXT_PUBLIC_BASE_URL}/${state}`}
+                        />
                     </div>
                 }
             </Form>
