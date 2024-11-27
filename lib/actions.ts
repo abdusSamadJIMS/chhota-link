@@ -1,17 +1,19 @@
 "use server"
 
+import slugify from "slugify";
 import prisma from "./db";
 import { generateUniqueAlphabeticString } from "./utils";
 
 export async function generateUrl(prevState: unknown, formdata: FormData) {
     const link = formdata.get("link") as string;
-    const preferredUrl = formdata.get("preferredUrl") as string;
+    const preferredUrl = formdata.get("preferredUrl") as string || "";
+    const slufigyPrefferedUrl = slugify(preferredUrl, { replacement: "-", remove: /[*+~.()'"!:@]/g })
 
     if (!link) throw new Error("Link not found");
 
     if (preferredUrl) {
         const isPreferredAvailable = await prisma.url.findFirst({
-            where: { shortUrl: preferredUrl }
+            where: { shortUrl: slufigyPrefferedUrl }
         });
 
         if (isPreferredAvailable) {
@@ -22,7 +24,7 @@ export async function generateUrl(prevState: unknown, formdata: FormData) {
             if (timeDiffInSeconds > twoWeeksInSeconds) {
                 // Replace the preferred URL
                 const data = await prisma.url.update({
-                    where: { shortUrl: preferredUrl },
+                    where: { shortUrl: slufigyPrefferedUrl },
                     data: {
                         link,
                         updatedAt: new Date() // Update the timestamp
@@ -35,7 +37,7 @@ export async function generateUrl(prevState: unknown, formdata: FormData) {
                 const data = await prisma.url.create({
                     data: {
                         link,
-                        shortUrl
+                        shortUrl: slugify(shortUrl, { replacement: "-", remove: /[*+~.()'"!:@]/g })
                     }
                 });
                 return data.shortUrl;
@@ -45,7 +47,7 @@ export async function generateUrl(prevState: unknown, formdata: FormData) {
             const data = await prisma.url.create({
                 data: {
                     link,
-                    shortUrl: preferredUrl
+                    shortUrl: slufigyPrefferedUrl
                 }
             });
             return data.shortUrl;
@@ -56,7 +58,7 @@ export async function generateUrl(prevState: unknown, formdata: FormData) {
         const data = await prisma.url.create({
             data: {
                 link,
-                shortUrl
+                shortUrl: slugify(shortUrl, { replacement: "-", remove: /[*+~.()'"!:@]/g })
             }
         });
         return data.shortUrl;
