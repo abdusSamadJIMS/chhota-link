@@ -1,4 +1,6 @@
+import Image from 'next/image'
 import React from 'react'
+import smallIcon from '@/public/images/small.svg'
 
 const HeroText = () => {
     return (
@@ -12,7 +14,14 @@ const HeroText = () => {
                 <span className='font-normal italic bg-secondary px-3 py-1 text-accent'>
                     Chhota Link
                 </span>
-                &nbsp;Now
+                <Image
+                    src={smallIcon}
+                    alt='small icon'
+                    width={50}
+                    height={50}
+                    className='inline-block p-1 ml-1'
+                />
+                Now
             </h3>
         </section>
     )
