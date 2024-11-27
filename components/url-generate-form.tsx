@@ -1,6 +1,6 @@
 'use client'
 import React, { useActionState } from 'react'
-import { generateUrl } from '@/actions'
+import { generateUrl } from '@/lib/actions'
 import Form from 'next/form'
 import Link from 'next/link'
 

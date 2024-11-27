@@ -1,7 +1,7 @@
 "use server"
 
 import prisma from "./db";
-import { generateUniqueAlphabeticString } from "./lib/utils";
+import { generateUniqueAlphabeticString } from "./utils";
 
 export async function generateUrl(prevState: unknown, formdata: FormData) {
     const link = formdata.get("link") as string;

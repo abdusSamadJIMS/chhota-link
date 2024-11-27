@@ -1,7 +1,7 @@
-import prisma from '@/db';
+import prisma from '@/lib/db';
 import { permanentRedirect, redirect } from 'next/navigation';
 
-export const revalidate = 0
+// export const revalidate = 0
 
 const Page = async ({ params }: { params: Promise<{ shortUrl?: string }> }) => {
     const shortUrl = (await params).shortUrl
