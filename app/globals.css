@@ -3,19 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --accent: #ebd3f8;
+  --primary: #7a1cac;
+  --secondary: #ad49e1;
+  --neutral: #2e073f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.font-work-sans {
+  font-family: var(--font-work-sans), sans-serif;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--accent);
+  font-family: var(--font-work-sans), sans-serif;
+  overflow-y: hidden;
 }
